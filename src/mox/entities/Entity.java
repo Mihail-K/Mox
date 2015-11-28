@@ -6,11 +6,73 @@
 
 package mox.entities;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import mox.components.Component;
+
 /**
  *
  * @author Mihail
  */
 public class Entity
 {
+    
+    private long handle;
+    private final Map<Class<?>, Component> components;
+    
+    protected Entity()
+    {
+        this.components = Collections.emptyMap();
+    }
+    
+    protected Entity(Map<Class<?>, Component> components)
+    {
+        this.components = new HashMap<>(components);
+    }
+    
+    protected boolean addComponent(Component component)
+    {
+        if(hasComponent(component.getClass()))
+        {
+            return false;
+        }
+        else
+        {
+            components.put(component.getClass(), component);
+            return true;
+        }
+    }
+    
+    public Component getComponent(Class<?> type)
+    {
+        return components.get(type);
+    }
+    
+    public Collection<Component> getComponents()
+    {
+        return Collections.unmodifiableCollection(components.values());
+    }
+    
+    public long getHandle()
+    {
+        return handle;
+    }
+    
+    public boolean hasComponent(Class<?> type)
+    {
+        return components.containsKey(type);
+    }
+    
+    protected boolean removeComponent(Class<?> type)
+    {
+        return components.remove(type) != null;
+    }
+    
+    protected void setHandle(long handle)
+    {
+        this.handle = handle;
+    }
     
 }
