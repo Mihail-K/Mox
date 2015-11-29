@@ -6,7 +6,7 @@
 
 package mox.systems;
 
-import java.util.LinkedList;
+import java.util.ArrayDeque;
 import java.util.Queue;
 
 import mox.components.SpriteComponent;
@@ -25,7 +25,7 @@ import org.newdawn.slick.GameContainer;
 public class SpriteSystem extends System
 {
     
-    private final Queue<Message> queue = new LinkedList<>();
+    private final Queue<Message> queue = new ArrayDeque<>();
 
     public SpriteSystem(EntityManager manager, MessageRouter router)
     {
