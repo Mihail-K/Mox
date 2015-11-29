@@ -6,6 +6,9 @@
 
 package mox.systems;
 
+import java.util.stream.Stream;
+
+import mox.components.PositionComponent;
 import mox.entities.EntityManager;
 
 /**
@@ -20,9 +23,16 @@ public class PositionSystem extends System
         super(manager);
     }
 
-    @Override
-    public void update(double delta)
+    public Stream<PositionComponent> getComponents()
     {
+        return getManager().getComponents(PositionComponent.class)
+                .stream().map(component -> (PositionComponent) component);
     }
-    
+
+    @Override
+    public void update(int delta)
+    {
+        getComponents().forEach(component -> component.update(delta));
+    }
+
 }
