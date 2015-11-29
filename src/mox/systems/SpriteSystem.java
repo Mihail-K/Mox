@@ -15,8 +15,6 @@ import mox.entities.EntityManager;
 import mox.messages.Message;
 import mox.messages.MessageRouter;
 import mox.messages.PositionChangedMessage;
-import org.newdawn.slick.geom.Shape;
-import org.newdawn.slick.geom.Transform;
 
 /**
  *
@@ -67,9 +65,7 @@ public class SpriteSystem extends System
         SpriteComponent sComponent = entity.getComponentAs(SpriteComponent.class);
         if(sComponent == null) return;
         
-        Shape shape = sComponent.getShape().transform(Transform.createTranslateTransform(
-                message.getPosition().x, message.getPosition().y));
-        sComponent.setShape(shape);
+        sComponent.getShape().setLocation(message.getPosition());
     }
     
 }
