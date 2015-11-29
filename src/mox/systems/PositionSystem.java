@@ -6,10 +6,14 @@
 
 package mox.systems;
 
-import java.util.stream.Stream;
+import java.util.Set;
 
 import mox.components.PositionComponent;
+import mox.entities.Entity;
 import mox.entities.EntityManager;
+import mox.messages.MessageRouter;
+import mox.messages.PositionChangedMessage;
+import org.newdawn.slick.geom.Vector2f;
 
 /**
  *
@@ -18,21 +22,32 @@ import mox.entities.EntityManager;
 public class PositionSystem extends System
 {
 
-    public PositionSystem(EntityManager manager)
+    public PositionSystem(EntityManager manager, MessageRouter router)
     {
-        super(manager);
+        super(manager, router);
     }
 
-    public Stream<PositionComponent> getComponents()
+    public Set<Entity> getEntities()
     {
-        return getManager().getComponents(PositionComponent.class)
-                .stream().map(component -> (PositionComponent) component);
+        return getManager().getEntities(PositionComponent.class);
     }
 
     @Override
     public void update(int delta)
     {
-        getComponents().forEach(component -> component.update(delta));
+        getEntities().stream().forEach((entity) ->
+        {
+            PositionComponent pComponent = entity.getComponentAs(PositionComponent.class);
+            
+            Vector2f position = pComponent.getPosition();
+            Vector2f velocity = pComponent.getVelocity().copy();
+            
+            if(velocity.lengthSquared() != 0)
+            {
+                position.add(velocity.scale((float) delta / 1000F));
+                getRouter().send(new PositionChangedMessage(entity.getHandle(), position));
+            }
+        });
     }
 
 }
