@@ -6,6 +6,7 @@
 
 package mox.components;
 
+import mox.messages.Message;
 import org.newdawn.slick.geom.Vector2f;
 
 /**
@@ -48,11 +49,6 @@ public class PositionComponent implements Component
     public void setVelocity(Vector2f velocity)
     {
         this.velocity = velocity;
-    }
-    
-    public void update(int delta)
-    {
-        position.add(velocity.copy().scale((float) delta / 1000F));
     }
     
 }
