@@ -15,7 +15,7 @@ import org.newdawn.slick.geom.Shape;
 public class SpriteComponent implements Component
 {
     
-    private final Shape shape;
+    private Shape shape;
     private boolean visible;
     
     public SpriteComponent(Shape shape)
@@ -37,6 +37,11 @@ public class SpriteComponent implements Component
     public boolean isVisible()
     {
         return visible;
+    }
+
+    public void setShape(Shape shape)
+    {
+        this.shape = shape;
     }
     
     public void setVisible(boolean visible)
