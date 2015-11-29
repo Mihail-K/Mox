@@ -25,20 +25,23 @@ import org.newdawn.slick.geom.Transform;
 public class SpriteSystem extends System
 {
     
-    private final Queue<Message> queue;
+    private final Queue<Message> queue = new LinkedList<>();
 
     public SpriteSystem(EntityManager manager, MessageRouter router)
     {
         super(manager, router);
-        
-        queue = new LinkedList<>();
-        router.subscribe("position-changed", this);
     }
     
     @Override
     public void consume(Message message)
     {
         queue.add(message);
+    }
+    
+    @Override
+    public void init()
+    {
+        getRouter().subscribe("position-changed", this);
     }
 
     @Override

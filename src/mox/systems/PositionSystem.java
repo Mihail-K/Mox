@@ -31,6 +31,12 @@ public class PositionSystem extends System
     {
         return getManager().getEntities(PositionComponent.class);
     }
+    
+    @Override
+    public void init()
+    {
+        // Nothing.
+    }
 
     @Override
     public void update(int delta)

@@ -35,6 +35,8 @@ public abstract class System implements MessageConsumer
     {
         return router;
     }
+    
+    public abstract void init();
 
     public abstract void update(int delta);
 
