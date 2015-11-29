@@ -9,6 +9,7 @@ package mox.systems;
 import java.lang.reflect.InvocationTargetException;
 
 import mox.entities.EntityManager;
+import mox.messages.MessageRouter;
 
 /**
  *
@@ -22,12 +23,12 @@ public final class SystemFactory
         // Hidden Constructor.
     }
 
-    public static System create(Class<?> type, EntityManager manager)
+    public static System create(Class<?> type, EntityManager manager, MessageRouter router)
     {
         try
         {
             return (System) type.getConstructor(
-                    EntityManager.class).newInstance(manager);
+                    EntityManager.class).newInstance(manager, router);
         }
         catch(NoSuchMethodException | SecurityException |
                 InstantiationException | IllegalAccessException |

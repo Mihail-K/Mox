@@ -18,20 +18,22 @@ public abstract class System implements MessageConsumer
 {
 
     private final EntityManager manager;
+    private final MessageRouter router;
 
-    public System(EntityManager manager)
+    public System(EntityManager manager, MessageRouter router)
     {
         this.manager = manager;
+        this.router = router;
     }
 
     public EntityManager getManager()
     {
         return manager;
     }
-    
-    public void subscribe(MessageRouter router)
+
+    public MessageRouter getRouter()
     {
-        // Children may implement as necessary.
+        return router;
     }
 
     public abstract void update(int delta);

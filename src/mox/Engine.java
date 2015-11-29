@@ -47,14 +47,9 @@ public class Engine
         return Collections.unmodifiableList(systems);
     }
     
-    public void init()
-    {
-        systems.stream().forEach(system -> system.subscribe(router));
-    }
-    
     public boolean registerSystem(Class<?> type)
     {
-        System system = SystemFactory.create(type, manager);
+        System system = SystemFactory.create(type, manager, router);
         if(system == null) return false;
         
         registerSystem(system);
