@@ -12,6 +12,7 @@ import java.util.List;
 
 import mox.entities.EntityManager;
 import mox.systems.System;
+import mox.systems.SystemFactory;
 
 /**
  *
@@ -43,6 +44,15 @@ public class Engine
         return Collections.unmodifiableList(systems);
     }
     
+    public boolean registerSystem(Class<?> type)
+    {
+        System system = SystemFactory.create(type, manager);
+        if(system == null) return false;
+        
+        registerSystem(system);
+        return true;
+    }
+    
     public void registerSystem(System system)
     {
         systems.add(system);
@@ -54,6 +64,17 @@ public class Engine
         {
             system.update(delta);
         });
+    }
+    
+    public boolean unregisterSystem(Class<?> type)
+    {
+        System system = systems.stream()
+                .filter(s -> s.getClass().equals(type))
+                .findFirst().orElse(null);
+        if(system == null) return false;
+        
+        unregisterSystem(system);
+        return true;
     }
     
     public void unregisterSystem(System system)

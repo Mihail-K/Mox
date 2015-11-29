@@ -37,7 +37,7 @@ public class TestState extends BasicGameState
             throws SlickException
     {
         engine = new Engine(new EntityManager());
-        engine.registerSystem(new PositionSystem(engine.getEntityManager()));
+        engine.registerSystem(PositionSystem.class);
         
         engine.getEntityManager().addEntity(new PositionComponent(
                 new Vector2f(100, 100), new Vector2f(25, 0)));
