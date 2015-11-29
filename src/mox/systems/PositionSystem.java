@@ -8,12 +8,15 @@ package mox.systems;
 
 import java.util.Set;
 
+import mox.Message;
 import mox.components.PositionComponent;
 import mox.entities.Entity;
 import mox.entities.EntityManager;
 import mox.MessageRouter;
 import mox.messages.PositionChangedMessage;
 import mox.System;
+import mox.components.PlayerComponent;
+import mox.messages.PlayerMovementMessage;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.geom.Vector2f;
 
@@ -29,6 +32,17 @@ public class PositionSystem extends System
         super(manager, router);
     }
 
+    @Override
+    public void consume(Message message)
+    {
+        switch(message.getName())
+        {
+            case "player-input":
+                playerInput((PlayerMovementMessage) message);
+                break;
+        }
+    }
+
     public Set<Entity> getEntities()
     {
         return getEntityManager().getEntities(PositionComponent.class);
@@ -37,7 +51,7 @@ public class PositionSystem extends System
     @Override
     public void init(GameContainer gc)
     {
-        // Nothing.
+        getMessageRouter().subscribe("player-input", this);
     }
 
     @Override
@@ -56,6 +70,22 @@ public class PositionSystem extends System
                 getMessageRouter().send(new PositionChangedMessage(
                         entity.getHandle(), position));
             }
+        });
+    }
+
+    private void playerInput(PlayerMovementMessage message)
+    {
+        getEntityManager().getEntities(PlayerComponent.class).stream()
+                .filter(entity -> entity.hasComponent(PositionComponent.class))
+                .forEach(entity ->
+        {
+            PlayerComponent plComponent = entity.getComponentAs(PlayerComponent.class);
+            PositionComponent pComponent = entity.getComponentAs(PositionComponent.class);
+            
+            Vector2f movement = new Vector2f(plComponent.getSpeed(), 0);
+            movement.setTheta(message.getDirection().direction);
+            if(message.isReleased()) movement.negateLocal();
+            pComponent.getVelocity().add(movement);
         });
     }
 

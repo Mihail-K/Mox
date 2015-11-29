@@ -7,9 +7,11 @@
 package mox.states;
 
 import mox.Engine;
+import mox.components.PlayerComponent;
 import mox.components.PositionComponent;
 import mox.components.SpriteComponent;
 import mox.entities.EntityManager;
+import mox.systems.PlayerSystem;
 import mox.systems.PositionSystem;
 import mox.systems.SpriteSystem;
 import org.newdawn.slick.GameContainer;
@@ -42,10 +44,12 @@ public class TestState extends BasicGameState
         engine = new Engine(new EntityManager());
         engine.registerSystem(PositionSystem.class);
         engine.registerSystem(SpriteSystem.class);
+        engine.registerSystem(PlayerSystem.class);
         
         engine.getEntityManager().addEntity(
-                new PositionComponent(new Vector2f(100, 100), new Vector2f(25, 0)),
-                new SpriteComponent(new Circle(0, 0, 25)));
+                new PositionComponent(new Vector2f(100, 100)),
+                new SpriteComponent(new Circle(0, 0, 25)),
+                new PlayerComponent(true));
         engine.init(gc);
     }
 

@@ -21,8 +21,12 @@ public class PositionComponent implements Component
     
     public PositionComponent()
     {
-        position = new Vector2f();
-        velocity = new Vector2f();
+        this(new Vector2f(), new Vector2f());
+    }
+    
+    public PositionComponent(Vector2f position)
+    {
+        this(position, new Vector2f());
     }
     
     public PositionComponent(Vector2f position, Vector2f velocity)

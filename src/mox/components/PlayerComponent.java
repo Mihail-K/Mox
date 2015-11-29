@@ -16,10 +16,22 @@ public class PlayerComponent implements Component
 {
     
     private boolean controlled;
+    private float speed;
 
     public PlayerComponent(boolean controlled)
     {
+        this(controlled, 50F);
+    }
+
+    public PlayerComponent(boolean controlled, float speed)
+    {
         this.controlled = controlled;
+        this.speed = speed;
+    }
+
+    public float getSpeed()
+    {
+        return speed;
     }
 
     public boolean isControlled()
@@ -30,6 +42,11 @@ public class PlayerComponent implements Component
     public void setControlled(boolean controlled)
     {
         this.controlled = controlled;
+    }
+
+    public void setSpeed(float speed)
+    {
+        this.speed = speed;
     }
     
 }
