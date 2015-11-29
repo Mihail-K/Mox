@@ -14,7 +14,7 @@ import mox.entities.EntityManager;
  */
 public abstract class System
 {
-    
+
     private final EntityManager manager;
 
     public System(EntityManager manager)
@@ -26,7 +26,7 @@ public abstract class System
     {
         return manager;
     }
-    
+
     public abstract void update(int delta);
-    
+
 }
