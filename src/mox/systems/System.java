@@ -6,13 +6,27 @@
 
 package mox.systems;
 
+import mox.entities.EntityManager;
+
 /**
  *
  * @author Mihail
  */
-public interface System
+public abstract class System
 {
     
-    void update(double delta);
+    private final EntityManager manager;
+
+    public System(EntityManager manager)
+    {
+        this.manager = manager;
+    }
+
+    public EntityManager getManager()
+    {
+        return manager;
+    }
+    
+    public abstract void update(double delta);
     
 }
