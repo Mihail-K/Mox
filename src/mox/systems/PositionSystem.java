@@ -82,10 +82,13 @@ public class PositionSystem extends System
             PlayerComponent plComponent = entity.getComponentAs(PlayerComponent.class);
             PositionComponent pComponent = entity.getComponentAs(PositionComponent.class);
             
-            Vector2f movement = new Vector2f(plComponent.getSpeed(), 0);
-            movement.setTheta(message.getDirection().direction);
-            if(message.isReleased()) movement.negateLocal();
-            pComponent.getVelocity().add(movement);
+            if(plComponent.isControlled())
+            {
+                Vector2f movement = new Vector2f(plComponent.getSpeed(), 0);
+                movement.setTheta(message.getDirection().direction);
+                if(message.isReleased()) movement.negateLocal();
+                pComponent.getVelocity().add(movement);
+            }
         });
     }
 
