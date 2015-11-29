@@ -11,7 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 import mox.entities.EntityManager;
-import mox.messages.MessageProvider;
+import mox.messages.MessageRouter;
 import mox.systems.System;
 import mox.systems.SystemFactory;
 
@@ -23,13 +23,13 @@ public class Engine
 {
     
     private final EntityManager manager;
-    private final MessageProvider provider;
+    private final MessageRouter router;
     private final List<System> systems;
     
     /* this() */
     {
         systems = new ArrayList<>();
-        provider = new MessageProvider();
+        router = new MessageRouter();
     }
     
     public Engine(EntityManager manager)
@@ -49,7 +49,7 @@ public class Engine
     
     public void init()
     {
-        systems.stream().forEach(system -> system.subscribe(provider));
+        systems.stream().forEach(system -> system.subscribe(router));
     }
     
     public boolean registerSystem(Class<?> type)

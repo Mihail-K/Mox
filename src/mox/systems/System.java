@@ -8,7 +8,7 @@ package mox.systems;
 
 import mox.entities.EntityManager;
 import mox.messages.MessageConsumer;
-import mox.messages.MessageProvider;
+import mox.messages.MessageRouter;
 
 /**
  *
@@ -29,7 +29,7 @@ public abstract class System implements MessageConsumer
         return manager;
     }
     
-    public void subscribe(MessageProvider provider)
+    public void subscribe(MessageRouter router)
     {
         // Children may implement as necessary.
     }
