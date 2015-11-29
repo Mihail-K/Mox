@@ -27,8 +27,9 @@ public final class SystemFactory
     {
         try
         {
-            return (System) type.getConstructor(
-                    EntityManager.class).newInstance(manager, router);
+            return (System) type
+                    .getConstructor(EntityManager.class, MessageRouter.class)
+                    .newInstance(manager, router);
         }
         catch(NoSuchMethodException | SecurityException |
                 InstantiationException | IllegalAccessException |
