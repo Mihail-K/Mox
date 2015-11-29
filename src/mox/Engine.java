@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 import mox.entities.EntityManager;
+import org.newdawn.slick.GameContainer;
 
 /**
  *
@@ -44,9 +45,9 @@ public class Engine
         return Collections.unmodifiableList(systems);
     }
     
-    public void init()
+    public void init(GameContainer gc)
     {
-        systems.stream().forEach(system -> system.init());
+        systems.stream().forEach(system -> system.init(gc));
     }
     
     public boolean registerSystem(Class<?> type)
@@ -63,9 +64,9 @@ public class Engine
         systems.add(system);
     }
     
-    public void update(int delta)
+    public void update(GameContainer gc, int delta)
     {
-        systems.stream().forEach(system -> system.update(delta));
+        systems.stream().forEach(system -> system.update(gc, delta));
     }
     
     public boolean unregisterSystem(Class<?> type)

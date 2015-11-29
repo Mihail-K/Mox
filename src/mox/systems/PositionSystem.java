@@ -14,6 +14,7 @@ import mox.entities.EntityManager;
 import mox.MessageRouter;
 import mox.messages.PositionChangedMessage;
 import mox.System;
+import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.geom.Vector2f;
 
 /**
@@ -34,13 +35,13 @@ public class PositionSystem extends System
     }
     
     @Override
-    public void init()
+    public void init(GameContainer gc)
     {
         // Nothing.
     }
 
     @Override
-    public void update(int delta)
+    public void update(GameContainer gc, int delta)
     {
         getEntities().stream().forEach((entity) ->
         {

@@ -7,6 +7,7 @@
 package mox;
 
 import mox.entities.EntityManager;
+import org.newdawn.slick.GameContainer;
 
 /**
  *
@@ -34,8 +35,8 @@ public abstract class System implements MessageConsumer
         return router;
     }
     
-    public abstract void init();
+    public abstract void init(GameContainer gc);
 
-    public abstract void update(int delta);
+    public abstract void update(GameContainer gc, int delta);
 
 }

@@ -46,7 +46,7 @@ public class TestState extends BasicGameState
         engine.getEntityManager().addEntity(
                 new PositionComponent(new Vector2f(100, 100), new Vector2f(25, 0)),
                 new SpriteComponent(new Circle(0, 0, 25)));
-        engine.init();
+        engine.init(gc);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class TestState extends BasicGameState
     public void update(GameContainer gc, StateBasedGame sbg, int delta)
             throws SlickException
     {
-        engine.update(delta);
+        engine.update(gc, delta);
     }
     
 }

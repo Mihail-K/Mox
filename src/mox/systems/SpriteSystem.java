@@ -16,6 +16,7 @@ import mox.Message;
 import mox.MessageRouter;
 import mox.messages.PositionChangedMessage;
 import mox.System;
+import org.newdawn.slick.GameContainer;
 
 /**
  *
@@ -38,13 +39,13 @@ public class SpriteSystem extends System
     }
     
     @Override
-    public void init()
+    public void init(GameContainer gc)
     {
         getMessageRouter().subscribe("position-changed", this);
     }
 
     @Override
-    public void update(int delta)
+    public void update(GameContainer gc, int delta)
     {
         Message message;
         while((message = queue.poll()) != null)
