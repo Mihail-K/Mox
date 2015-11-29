@@ -25,7 +25,7 @@ public class EntityManager
     private final HandleManager<Entity> entities;
     private final Map<Class<?>, Set<Long>> lookups;
     
-    /* Common */
+    /* this() */
     {
         lookups = new HashMap<>();
     }
@@ -101,10 +101,17 @@ public class EntityManager
         return entities.get(handle);
     }
     
+    public Set<Component> getComponents(Class<?> type)
+    {
+        return Collections.unmodifiableSet(getHandles(type).stream()
+                .map(this::getEntity).map(e -> e.getComponent(type))
+                .collect(Collectors.toSet()));
+    }
+    
     public Set<Entity> getEntities(Class<?> type)
     {
-        return getHandles(type).stream().map(this::getEntity)
-                .collect(Collectors.toSet());
+        return Collections.unmodifiableSet(getHandles(type).stream()
+                .map(this::getEntity).collect(Collectors.toSet()));
     }
     
     public Set<Long> getHandles(Class<?> type)
