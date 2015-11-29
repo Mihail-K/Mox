@@ -8,11 +8,14 @@ package mox.states;
 
 import mox.Engine;
 import mox.components.PositionComponent;
+import mox.components.SpriteComponent;
 import mox.entities.EntityManager;
 import mox.systems.PositionSystem;
+import mox.systems.SpriteSystem;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Circle;
 import org.newdawn.slick.geom.Vector2f;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -38,31 +41,27 @@ public class TestState extends BasicGameState
     {
         engine = new Engine(new EntityManager());
         engine.registerSystem(PositionSystem.class);
+        engine.registerSystem(SpriteSystem.class);
         
-        engine.getEntityManager().addEntity(new PositionComponent(
-                new Vector2f(100, 100), new Vector2f(25, 0)));
+        engine.getEntityManager().addEntity(
+                new PositionComponent(new Vector2f(100, 100), new Vector2f(25, 0)),
+                new SpriteComponent(new Circle(0, 0, 25)));
+        engine.init();
     }
 
     @Override
     public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
             throws SlickException
     {
-        engine.getEntityManager().getComponents(PositionComponent.class)
-                .stream().map(component -> (PositionComponent) component)
-                .forEach((PositionComponent component) ->
-        {
-            g.drawOval(
-                    component.getPosition().x,
-                    component.getPosition().y,
-                    10, 10);
-        });
+        engine.getEntityManager().getComponents(SpriteComponent.class).stream()
+                .map(c -> ((SpriteComponent) c).getShape()).forEach(g::draw);
     }
 
     @Override
-    public void update(GameContainer gc, StateBasedGame sbg, int i)
+    public void update(GameContainer gc, StateBasedGame sbg, int delta)
             throws SlickException
     {
-        engine.getSystems().stream().forEach(system -> system.update(i));
+        engine.update(delta);
     }
     
 }
