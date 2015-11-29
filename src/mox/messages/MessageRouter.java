@@ -26,7 +26,7 @@ public class MessageRouter
         consumers = new HashMap<>();
     }
     
-    void send(Message message)
+    public void send(Message message)
     {
         consumers.getOrDefault(message.getName(), Collections.emptySet())
                 .stream().forEach(consumer -> consumer.consume(message));
