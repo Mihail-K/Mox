@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 import mox.entities.EntityManager;
+import mox.messages.MessageProvider;
 import mox.systems.System;
 import mox.systems.SystemFactory;
 
@@ -22,11 +23,13 @@ public class Engine
 {
     
     private final EntityManager manager;
+    private final MessageProvider provider;
     private final List<System> systems;
     
     /* this() */
     {
         systems = new ArrayList<>();
+        provider = new MessageProvider();
     }
     
     public Engine(EntityManager manager)
@@ -42,6 +45,11 @@ public class Engine
     public List<System> getSystems()
     {
         return Collections.unmodifiableList(systems);
+    }
+    
+    public void init()
+    {
+        systems.stream().forEach(system -> system.subscribe(provider));
     }
     
     public boolean registerSystem(Class<?> type)
@@ -60,10 +68,7 @@ public class Engine
     
     public void update(int delta)
     {
-        systems.stream().forEach((system) ->
-        {
-            system.update(delta);
-        });
+        systems.stream().forEach(system -> system.update(delta));
     }
     
     public boolean unregisterSystem(Class<?> type)

@@ -7,12 +7,14 @@
 package mox.systems;
 
 import mox.entities.EntityManager;
+import mox.messages.MessageConsumer;
+import mox.messages.MessageProvider;
 
 /**
  *
  * @author Mihail
  */
-public abstract class System
+public abstract class System implements MessageConsumer
 {
 
     private final EntityManager manager;
@@ -25,6 +27,11 @@ public abstract class System
     public EntityManager getManager()
     {
         return manager;
+    }
+    
+    public void subscribe(MessageProvider provider)
+    {
+        // Children may implement as necessary.
     }
 
     public abstract void update(int delta);
