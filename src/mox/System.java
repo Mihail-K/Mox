@@ -4,11 +4,9 @@
  * and open the template in the editor.
  */
 
-package mox.systems;
+package mox;
 
 import mox.entities.EntityManager;
-import mox.messages.MessageConsumer;
-import mox.messages.MessageRouter;
 
 /**
  *

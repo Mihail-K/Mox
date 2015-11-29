@@ -12,9 +12,10 @@ import java.util.Queue;
 import mox.components.SpriteComponent;
 import mox.entities.Entity;
 import mox.entities.EntityManager;
-import mox.messages.Message;
-import mox.messages.MessageRouter;
+import mox.Message;
+import mox.MessageRouter;
 import mox.messages.PositionChangedMessage;
+import mox.System;
 
 /**
  *

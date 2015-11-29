@@ -12,7 +12,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-import mox.components.Component;
+
+import mox.Component;
 import mox.handles.HandleManager;
 
 /**

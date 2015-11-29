@@ -4,12 +4,11 @@
  * and open the template in the editor.
  */
 
-package mox.systems;
+package mox;
 
 import java.lang.reflect.InvocationTargetException;
 
 import mox.entities.EntityManager;
-import mox.messages.MessageRouter;
 
 /**
  *

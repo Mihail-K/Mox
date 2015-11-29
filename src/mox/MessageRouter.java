@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package mox.messages;
+package mox;
 
 import java.util.Collections;
 import java.util.HashMap;

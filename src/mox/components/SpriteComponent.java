@@ -6,6 +6,7 @@
 
 package mox.components;
 
+import mox.Component;
 import org.newdawn.slick.geom.Shape;
 
 /**

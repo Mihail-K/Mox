@@ -10,7 +10,8 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import mox.components.Component;
+
+import mox.Component;
 
 /**
  *

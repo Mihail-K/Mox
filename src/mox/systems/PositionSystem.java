@@ -11,8 +11,9 @@ import java.util.Set;
 import mox.components.PositionComponent;
 import mox.entities.Entity;
 import mox.entities.EntityManager;
-import mox.messages.MessageRouter;
+import mox.MessageRouter;
 import mox.messages.PositionChangedMessage;
+import mox.System;
 import org.newdawn.slick.geom.Vector2f;
 
 /**

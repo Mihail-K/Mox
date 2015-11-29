@@ -6,7 +6,7 @@
 
 package mox.components;
 
-import mox.messages.Message;
+import mox.Component;
 import org.newdawn.slick.geom.Vector2f;
 
 /**

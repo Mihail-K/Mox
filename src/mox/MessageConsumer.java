@@ -4,25 +4,18 @@
  * and open the template in the editor.
  */
 
-package mox.messages;
+package mox;
 
 /**
  *
  * @author Mihail
  */
-public abstract class Message
+public interface MessageConsumer
 {
     
-    private final String name;
-    
-    public Message(String name)
+    default void consume(Message message)
     {
-        this.name = name;
-    }
-    
-    public String getName()
-    {
-        return name;
+        // Children may implement as necessary.
     }
     
 }
