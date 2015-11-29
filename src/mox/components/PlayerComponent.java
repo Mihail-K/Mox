@@ -6,13 +6,13 @@
 
 package mox.components;
 
-import java.awt.Component;
+import mox.Component;
 
 /**
  *
  * @author Mihail
  */
-public class PlayerComponent extends Component
+public class PlayerComponent implements Component
 {
     
     private boolean controlled;
