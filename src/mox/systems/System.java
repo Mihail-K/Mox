@@ -27,6 +27,6 @@ public abstract class System
         return manager;
     }
     
-    public abstract void update(double delta);
+    public abstract void update(int delta);
     
 }
