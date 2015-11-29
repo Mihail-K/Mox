@@ -39,7 +39,7 @@ public class SpriteSystem extends System
     @Override
     public void init()
     {
-        getRouter().subscribe("position-changed", this);
+        getMessageRouter().subscribe("position-changed", this);
     }
 
     @Override
@@ -59,7 +59,7 @@ public class SpriteSystem extends System
     
     private void positionChanged(PositionChangedMessage message)
     {
-        Entity entity = getManager().getEntity(message.getHandle());
+        Entity entity = getEntityManager().getEntity(message.getHandle());
         if(entity == null) return;
         
         SpriteComponent sComponent = entity.getComponentAs(SpriteComponent.class);

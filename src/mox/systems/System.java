@@ -26,12 +26,12 @@ public abstract class System implements MessageConsumer
         this.router = router;
     }
 
-    public EntityManager getManager()
+    public EntityManager getEntityManager()
     {
         return manager;
     }
 
-    public MessageRouter getRouter()
+    public MessageRouter getMessageRouter()
     {
         return router;
     }

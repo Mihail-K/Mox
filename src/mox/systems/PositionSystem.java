@@ -29,7 +29,7 @@ public class PositionSystem extends System
 
     public Set<Entity> getEntities()
     {
-        return getManager().getEntities(PositionComponent.class);
+        return getEntityManager().getEntities(PositionComponent.class);
     }
     
     @Override
@@ -51,7 +51,8 @@ public class PositionSystem extends System
             if(velocity.lengthSquared() != 0)
             {
                 position.add(velocity.scale((float) delta / 1000F));
-                getRouter().send(new PositionChangedMessage(entity.getHandle(), position));
+                getMessageRouter().send(new PositionChangedMessage(
+                        entity.getHandle(), position));
             }
         });
     }
