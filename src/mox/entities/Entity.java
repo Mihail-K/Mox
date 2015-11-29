@@ -50,6 +50,11 @@ public class Entity
         return components.get(type);
     }
     
+    public<Type> Type getComponentAs(Class<Type> type)
+    {
+        return (Type) components.get(type);
+    }
+    
     public Collection<Component> getComponents()
     {
         return Collections.unmodifiableCollection(components.values());
